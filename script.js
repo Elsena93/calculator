@@ -61,7 +61,25 @@ function updateScreen(item) {
         }
     }
 
-    //Update for + - % * / (maybe =)
+
+    //Update for =
+    if (item.target.classList.contains('equal')) {
+        if ((operand1 != false || operand1 === "0") &&
+        operator != false) {
+
+            operand2 = screen.textContent;
+
+            //Executing operate()
+            screen.textContent = operate(operator, operand1, operand2);
+
+            //resetting variables
+            operand1 = screen.textContent; //operand1 values equal to last operation  result
+            operand2 = false;
+            operand2filling = false;
+        }
+    }
+
+    //Update for + - % * / 
     if (item.target.classList.contains('operand')) {
         
         //Checking if screen is empty so no value could be stored
@@ -74,7 +92,7 @@ function updateScreen(item) {
             operand1 = screen.textContent;
             operator = item.target.textContent;
         }
-        else if ((operand1 != false || operand1 === "0") && operand2 == false) {
+        else if ((operand1 != false || operand1 === "0") && (operand2 == false && operand2 !== "0")) {
             
             if (operand2filling!= false) {
                 operand2 = screen.textContent;
