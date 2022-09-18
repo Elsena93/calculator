@@ -18,7 +18,7 @@ function updateScreen(item) {
     if (item.target.classList.contains('num')) {
         
         //Checking condition if its time to fill operand2
-        if (operand1 != false && operand2filling == false) {
+        if ((operand1 != false || operand1 === "0") && operand2filling == false) {
             screen.textContent = "";
             //Turn switch for defining operand2 so screen not resetted when user input operand2
             operand2filling = true;
@@ -70,18 +70,18 @@ function updateScreen(item) {
         }
         
         //Storing operand1 for the first time
-        else if (operand1 == false) {
+        else if (operand1 == false && operand1 !== "0") {
             operand1 = screen.textContent;
             operator = item.target.textContent;
         }
-        else if (operand1 != false && operand2 == false) {
+        else if ((operand1 != false || operand1 === "0") && operand2 == false) {
             
             if (operand2filling!= false) {
                 operand2 = screen.textContent;
                 screen.textContent = "";
             }
             
-            if (operand2 != false && operand2filling != false) {
+            if ((operand2 != false || operand2 === "0") && operand2filling != false) {
                 //Executing operate()
                 screen.textContent = operate(operator, operand1, operand2);
 
