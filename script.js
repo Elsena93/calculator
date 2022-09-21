@@ -65,7 +65,7 @@ function updateScreen(item) {
     //Update for =
     if (item.target.classList.contains('equal')) {
         if ((operand1 != false || operand1 === "0") &&
-        operator != false) {
+        operator != false && operand2filling == true) {
 
             operand2 = screen.textContent;
 
@@ -76,6 +76,7 @@ function updateScreen(item) {
             operand1 = screen.textContent; //operand1 values equal to last operation  result
             operand2 = false;
             operand2filling = false;
+            operator = false;
         }
     }
 
